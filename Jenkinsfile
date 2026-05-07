@@ -30,7 +30,7 @@ pipeline {
                 echo 'Запуск тестів...'
                 sh '''
                     . venv/bin/activate
-                    python3 -m pytest/ --junitxml=test-results/results.xml
+                    python3 -m pytest tests/ --junitxml=test-results/results.xml
                 '''
             }
             post {
