@@ -17,7 +17,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Встановлення залежностей...'
-                bat '''
+                sh '''
                     python3 -m venv venv
                     . venv/bin/activate
                     pip install -r requirements.txt
@@ -28,7 +28,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Запуск тестів...'
-                bat '''
+                sh '''
                     . venv/bin/activate
                     pytest tests/ --junitxml=test-results/results.xml
                 '''
@@ -43,7 +43,7 @@ pipeline {
         stage('Deliver') {
             steps {
                 echo 'Доставка у папку cargo...'
-                bat '''
+                sh '''
                     mkdir -p ${DELIVERY_DIR}
                     cp -r src/ ${DELIVERY_DIR}/
                     cp requirements.txt ${DELIVERY_DIR}/
